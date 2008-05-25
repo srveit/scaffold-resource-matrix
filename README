@@ -10,7 +10,7 @@ etc). Everything comes with sample unit, functional and matrix tests
 as well.
 
 The resource may optionally be authenticated,
-in which case all contorller actions require a user to be logged
+in which case all controller actions require a user to be logged
 in. Additional tests are added to the functional matrix test to test
 for this.
 
