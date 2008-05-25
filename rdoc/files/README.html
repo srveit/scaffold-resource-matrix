@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Sat May 24 22:48:18 -0500 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>ScaffoldResourceMatrix</h1>
+<p>
+The scaffold resource matrix generator creates a model, a controller, and a
+set of templates that are ready to use as the starting point for your
+REST-like, resource-oriented application. This basically means that it
+follows a set of conventions to exploit the full set of HTTP verbs
+(GET/POST/PUT/DELETE) and is prepared for multi-client access (like one
+view for HTML, one for an XML API, one for ATOM, etc). Everything comes
+with sample unit, functional and matrix tests as well.
+</p>
+<p>
+The resource may optionally be authenticated, in which case all contorller
+actions require a user to be logged in. Additional tests are added to the
+functional matrix test to test for this.
+</p>
+<p>
+The generator takes the name of the model as its first argument. This model
+name is then pluralized to get the controller name. So
+&quot;scaffold_resource_matrix book&quot; will generate a Book model and a
+BooksController and will be intended for URLs like /books and /books/45.
+</p>
+<p>
+As additional parameters, the generator will take attribute pairs described
+by name and type. These attributes will be used to prepopulate the
+migration to create the table for the model and to give you a set of
+templates for the view. For example,
+</p>
+<pre>
+  scaffold_resource_matrix book title:string created_on:date body:text published:boolean
+</pre>
+<p>
+will give you a model with those four attributes, forms to create and edit
+those models from, and an index that&#8216;ll list them all.
+</p>
+<p>
+You don&#8216;t have to think up all attributes up front, but it&#8216;s a
+good idea of adding just the baseline of what&#8216;s needed to start
+really working with the resource.
+</p>
+<p>
+Once the generator has run, you&#8216;ll need to add a declaration to your
+config/routes.rb file to hook up the rules that&#8216;ll point URLs to this
+new resource. If you create a resource like &quot;scaffold_resource_matrix
+book&quot;, you&#8216;ll need to add &quot;map.resources :books&quot;
+(notice the plural form) in the routes file. Then your new resource is
+accessible from /books.
+</p>
+<p>
+Note: This generator is an enhancement of the scaffold_resource generator
+that comes with Rails.
+</p>
+<h2>Examples</h2>
+<pre>
+  ./script/generate scaffold_resource_matrix book # no attributes, view will be anemic
+  ./script/generate scaffold_resource_matrix book title:string created_on:date body:text published:boolean
+  ./script/generate scaffold_resource_matrix book title:string created_on:date body:text published:boolean --authenticated
+  ./script/generate scaffold_resource_matrix purchase order_id:integer created_at:datetime amount:decimal
+</pre>
+<h2>Dependencies</h2>
+<p>
+<a href="http://www.zenspider.com/ZSS/Products/ZenTest/">ZenTest</a>
+</p>
+<pre>
+  gem install ZenTest
+</pre>
+<p>
+<a
+href="http://agilewebdevelopment.com/plugins/restful_authentication">restful_authentication</a>
+</p>
+<pre>
+  ./script/plugin install restful_authentication
+  ./script/generate authenticated user sessions
+</pre>
+<h2>Additional Information</h2>
+<p>
+See Dr. Nic&#8216;s post on <a
+href="http://drnicwilliams.com/2007/05/22/functional-testing-using-a-matrix-to-cover-all-edge-cases-video/">Functional
+Testing using a Matrix</a>
+</p>
+<p>
+See Ryan Davis&#8217; <a
+href="http://video.google.com/videoplay?docid=-2381939140760426511">talk at
+RejectConf2007 on functional matrix test</a>
+</p>
+<p>
+See <a
+href="http://wiki.rubyonrails.org/rails/pages/restful_authentication">wiki
+entry on restful_authentication</a>
+</p>
+<p>
+Copyright (c) 2008 Stephen R. Veit, released under the MIT license
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+= ScaffoldResourceMatrix
+
+The scaffold resource matrix generator creates a model, a controller,
+and a set of templates that are ready to use as the starting point for
+your REST-like, resource-oriented application. This basically means
+that it follows a set of conventions to exploit the full set of HTTP
+verbs (GET/POST/PUT/DELETE) and is prepared for multi-client access
+(like one view for HTML, one for an XML API, one for ATOM,
+etc). Everything comes with sample unit, functional and matrix tests
+as well.
+
+The resource may optionally be authenticated,
+in which case all contorller actions require a user to be logged
+in. Additional tests are added to the functional matrix test to test
+for this.
+
+The generator takes the name of the model as its first argument. This
+model name is then pluralized to get the controller name. So
+"scaffold_resource_matrix book" will generate a Book model and a
+BooksController and will be intended for URLs like /books and
+/books/45.
+    
+As additional parameters, the generator will take attribute pairs
+described by name and type. These attributes will be used to
+prepopulate the migration to create the table for the model and to
+give you a set of templates for the view. For example,
+
+  scaffold_resource_matrix book title:string created_on:date body:text published:boolean
+
+will give you a model with those four attributes,
+forms to create and edit those models from, and an index that'll list
+them all.
+
+You don't have to think up all attributes up front, but it's a good
+idea of adding just the baseline of what's needed to start really
+working with the resource.
+
+Once the generator has run, you'll need to add a declaration to your
+config/routes.rb file to hook up the rules that'll point URLs to this
+new resource. If you create a resource like "scaffold_resource_matrix
+book", you'll need to add "map.resources :books" (notice the plural
+form) in the routes file. Then your new resource is accessible from
+/books.
+
+Note: This generator is an enhancement of the scaffold_resource
+generator that comes with Rails.
+
+== Examples
+
+  ./script/generate scaffold_resource_matrix book # no attributes, view will be anemic
+  ./script/generate scaffold_resource_matrix book title:string body:text published:boolean
+  ./script/generate scaffold_resource_matrix book title:string body:text published:boolean --authenticated
+
+== Dependencies
+
+{ZenTest}[http://www.zenspider.com/ZSS/Products/ZenTest/]
+  gem install ZenTest
+
+{restful_authentication}[http://agilewebdevelopment.com/plugins/restful_authentication]
+  ./script/plugin install restful_authentication
+  ./script/generate authenticated user sessions
+
+== Additional Information
+
+See Dr. Nic's post on {Functional Testing using a
+Matrix}[http://drnicwilliams.com/2007/05/22/functional-testing-using-a-matrix-to-cover-all-edge-cases-video/]
+
+See Ryan Davis' {talk at RejectConf2007 on functional matrix test}[http://video.google.com/videoplay?docid=-2381939140760426511]
+
+See {wiki entry on restful_authentication}[http://wiki.rubyonrails.org/rails/pages/restful_authentication]
+
+Copyright (c) 2008 Stephen R. Veit, released under the MIT license
